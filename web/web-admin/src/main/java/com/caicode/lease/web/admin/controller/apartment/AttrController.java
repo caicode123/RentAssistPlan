@@ -9,6 +9,7 @@ import com.caicode.lease.web.admin.service.AttrValueService;
 import com.caicode.lease.web.admin.vo.attr.AttrKeyVo;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,7 +20,9 @@ import java.util.List;
 @RequestMapping("/admin/attr")
 public class AttrController {
 
+    @Autowired
     private AttrKeyService attrKeyService;
+    @Autowired
     private AttrValueService attrValueService;
 
     @Operation(summary = "新增或更新属性名称")

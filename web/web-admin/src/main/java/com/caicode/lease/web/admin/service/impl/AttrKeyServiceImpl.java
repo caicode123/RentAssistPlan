@@ -19,9 +19,10 @@ import java.util.List;
 @Service
 public class AttrKeyServiceImpl extends ServiceImpl<AttrKeyMapper, AttrKey>
     implements AttrKeyService{
+
     @Autowired
-    @Resource
     private AttrKeyMapper attrKeyMapper;
+
     @Override
     public List<AttrKeyVo> listAttrInfo() {
         return attrKeyMapper.listAttrInfo();
