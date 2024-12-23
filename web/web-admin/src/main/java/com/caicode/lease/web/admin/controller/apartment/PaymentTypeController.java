@@ -24,7 +24,7 @@ public class PaymentTypeController {
     @Operation(summary = "查询全部支付方式列表")
     @GetMapping("list")
     public Result<List<PaymentType>> listPaymentType() {
-//        不使用注解时使用mybatisplus中的lambda加入筛选条件
+        // 不使用注解时使用mybatisplus中的lambda加入筛选条件
         LambdaQueryWrapper<PaymentType> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(PaymentType::getIsDeleted,0);
         List<PaymentType> list = service.list(queryWrapper);

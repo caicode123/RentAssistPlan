@@ -18,5 +18,8 @@ spring:
 
 # 用于打印框架生成的SQL语句，便于调试
 mybatis-plus:
+  global-config:
+    db-config:
+      logic-delete-field: flag # 全局逻辑删除的实体字段名
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
