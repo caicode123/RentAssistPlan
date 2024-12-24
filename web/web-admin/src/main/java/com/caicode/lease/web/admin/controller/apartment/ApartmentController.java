@@ -4,6 +4,7 @@ package com.caicode.lease.web.admin.controller.apartment;
 import com.caicode.lease.common.result.Result;
 import com.caicode.lease.model.entity.ApartmentInfo;
 import com.caicode.lease.model.enums.ReleaseStatus;
+import com.caicode.lease.web.admin.service.ApartmentInfoService;
 import com.caicode.lease.web.admin.vo.apartment.ApartmentDetailVo;
 import com.caicode.lease.web.admin.vo.apartment.ApartmentItemVo;
 import com.caicode.lease.web.admin.vo.apartment.ApartmentQueryVo;
@@ -11,6 +12,7 @@ import com.caicode. lease.web.admin.vo.apartment.ApartmentSubmitVo;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,9 +23,13 @@ import java.util.List;
 @RequestMapping("/admin/apartment")
 public class ApartmentController {
 
+    @Autowired
+    private ApartmentInfoService apiInfoService;
+
     @Operation(summary = "保存或更新公寓信息")
     @PostMapping("saveOrUpdate")
     public Result saveOrUpdate(@RequestBody ApartmentSubmitVo apartmentSubmitVo) {
+        apiInfoService.saveOrUpdateApartment(apartmentSubmitVo);
         return Result.ok();
     }
 
