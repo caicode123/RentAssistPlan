@@ -1,6 +1,7 @@
 package com.caicode.lease.web.admin.controller.apartment;
 
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.caicode.lease.common.result.Result;
 import com.caicode.lease.model.entity.RoomInfo;
 import com.caicode.lease.model.enums.ReleaseStatus;
@@ -39,7 +40,9 @@ public class RoomController {
     @Operation(summary = "根据条件分页查询房间列表")
     @GetMapping("pageItem")
     public Result<IPage<RoomItemVo>> pageItem(@RequestParam long current, @RequestParam long size, RoomQueryVo queryVo) {
-        return Result.ok();
+        IPage<RoomItemVo> page = new Page<>(current, size);
+        IPage<RoomItemVo> result = service.pageRoomItemByQuery(page, queryVo);
+        return Result.ok(result);
     }
 
     @Operation(summary = "根据id获取房间详细信息")
