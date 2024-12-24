@@ -1,12 +1,16 @@
 package com.caicode.lease.web.admin.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.caicode.lease.model.entity.*;
 import com.caicode.lease.model.enums.ItemType;
 import com.caicode.lease.web.admin.mapper.ApartmentInfoMapper;
 import com.caicode.lease.web.admin.service.*;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.caicode.lease.web.admin.vo.apartment.ApartmentItemVo;
+import com.caicode.lease.web.admin.vo.apartment.ApartmentQueryVo;
 import com.caicode.lease.web.admin.vo.apartment.ApartmentSubmitVo;
 import com.caicode.lease.web.admin.vo.graph.GraphVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +26,9 @@ import java.util.List;
 @Service
 public class ApartmentInfoServiceImpl extends ServiceImpl<ApartmentInfoMapper, ApartmentInfo>
         implements ApartmentInfoService {
+
+    @Autowired
+    private ApartmentInfoMapper apartmentInfoMapper;
 
    @Autowired
     private GraphInfoService graphInfoService;//图片信息
@@ -93,7 +100,7 @@ public class ApartmentInfoServiceImpl extends ServiceImpl<ApartmentInfoMapper, A
         }
 
 
-        //3.插入标签列表
+        //插入标签列表
         List<Long> labelIds = apartmentSubmitVo.getLabelIds();
         if (!CollectionUtils.isEmpty(labelIds)) {
             List<ApartmentLabel> apartmentLabelList = new ArrayList<>();
@@ -120,6 +127,14 @@ public class ApartmentInfoServiceImpl extends ServiceImpl<ApartmentInfoMapper, A
             apartmentFeeValueService.saveBatch(apartmentFeeValueList);
         }
 
+    }
+
+    /*
+    根据条件分页查询公寓列表
+     */
+    @Override
+    public IPage<ApartmentItemVo> pageItem(Page<ApartmentItemVo> page, ApartmentQueryVo queryVo) {
+        return apartmentInfoMapper.pageItem(page,queryVo);
     }
 }
 
