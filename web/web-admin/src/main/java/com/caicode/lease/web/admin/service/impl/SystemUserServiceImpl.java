@@ -1,12 +1,15 @@
 package com.caicode.lease.web.admin.service.impl;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.caicode.lease.model.entity.SystemPost;
 import com.caicode.lease.model.entity.SystemUser;
+import com.caicode.lease.web.admin.mapper.SystemPostMapper;
 import com.caicode.lease.web.admin.mapper.SystemUserMapper;
 import com.caicode.lease.web.admin.service.SystemUserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.caicode.lease.web.admin.vo.system.user.SystemUserItemVo;
 import com.caicode.lease.web.admin.vo.system.user.SystemUserQueryVo;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,9 +24,28 @@ public class SystemUserServiceImpl extends ServiceImpl<SystemUserMapper, SystemU
     @Autowired
     private SystemUserMapper systemUserMapper;
 
+    @Autowired
+    private SystemPostMapper systemPostMapper;
+
     @Override
     public IPage<SystemUserItemVo> pageSystemUser(IPage<SystemUser> page, SystemUserQueryVo queryVo) {
         return systemUserMapper.pageSystemUser(page,queryVo);
+    }
+
+    @Override
+    public SystemUserItemVo getSystemUserById(Long id) {
+        //获取用户信息
+        SystemUser systemUser = systemUserMapper.selectById(id);
+
+        //获取用户的岗位信息
+        SystemPost systemPost = systemPostMapper.selectById(systemUser.getPostId());
+
+        //组装数据
+        SystemUserItemVo systemUserItemVo = new SystemUserItemVo();
+
+        BeanUtils.copyProperties(systemUser, systemUserItemVo);
+        systemUserItemVo.setPostName(systemPost.getName());
+        return systemUserItemVo;
     }
 }
 
