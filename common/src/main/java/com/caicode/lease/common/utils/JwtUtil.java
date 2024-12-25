@@ -1,7 +1,8 @@
 package com.caicode.lease.common.utils;
 
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import com.caicode.lease.common.exception.LeaseException;
+import com.caicode.lease.common.result.ResultCodeEnum;
+import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 
 import javax.crypto.SecretKey;
@@ -29,6 +30,28 @@ public class JwtUtil {
                 signWith(tokenSignKey).
                 compact();
         return token;
+    }
+
+
+    /**
+     * 解析token
+     * @param token
+     * @return
+     */
+    public static Claims parseToken(String token){
+
+        if (token==null){
+            throw new LeaseException(ResultCodeEnum.ADMIN_LOGIN_AUTH);
+        }
+
+        try{
+            JwtParser jwtParser = Jwts.parserBuilder().setSigningKey(tokenSignKey).build();
+            return jwtParser.parseClaimsJws(token).getBody();
+        }catch (ExpiredJwtException e){
+            throw new LeaseException(ResultCodeEnum.TOKEN_EXPIRED);
+        }catch (JwtException e){
+            throw new LeaseException(ResultCodeEnum.TOKEN_INVALID);
+        }
     }
 
     public static void main(String[] args) {
