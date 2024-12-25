@@ -11,6 +11,7 @@ import com.caicode.lease.web.admin.mapper.SystemUserMapper;
 import com.caicode.lease.web.admin.service.LoginService;
 import com.caicode.lease.web.admin.vo.login.CaptchaVo;
 import com.caicode.lease.web.admin.vo.login.LoginVo;
+import com.caicode.lease.web.admin.vo.system.user.SystemUserInfoVo;
 import com.wf.captcha.SpecCaptcha;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -83,5 +84,14 @@ public class LoginServiceImpl implements LoginService {
             throw new LeaseException(ResultCodeEnum.ADMIN_ACCOUNT_ERROR);
         }
         return JwtUtil.createToken(systemUser.getId(),systemUser.getUsername());
+    }
+
+    @Override
+    public SystemUserInfoVo getLoginUserInfoById(Long userId) {
+        SystemUser systemUser = systemUserMapper.selectById(userId);
+        SystemUserInfoVo userInfoVo = new SystemUserInfoVo();
+        userInfoVo.setName(systemUser.getName());
+        userInfoVo.setAvatarUrl(systemUser.getAvatarUrl());
+        return userInfoVo;
     }
 }

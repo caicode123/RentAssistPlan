@@ -1,11 +1,14 @@
 package com.caicode.lease.web.admin.controller.login;
 
 
+import com.caicode.lease.common.login.LoginUserHolder;
 import com.caicode.lease.common.result.Result;
+import com.caicode.lease.common.utils.JwtUtil;
 import com.caicode.lease.web.admin.service.LoginService;
 import com.caicode.lease.web.admin.vo.login.CaptchaVo;
 import com.caicode.lease.web.admin.vo.login.LoginVo;
 import com.caicode.lease.web.admin.vo.system.user.SystemUserInfoVo;
+import io.jsonwebtoken.Claims;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +39,8 @@ public class LoginController {
     @Operation(summary = "获取登陆用户个人信息")
     @GetMapping("info")
     public Result<SystemUserInfoVo> info() {
-        return Result.ok();
+        Long userId = LoginUserHolder.getLoginUser().getUserId();
+        SystemUserInfoVo userInfoVo = service.getLoginUserInfoById(userId);
+        return Result.ok(userInfoVo);
     }
 }
