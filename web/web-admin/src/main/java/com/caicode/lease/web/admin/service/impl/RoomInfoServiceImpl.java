@@ -200,6 +200,7 @@ public class RoomInfoServiceImpl extends ServiceImpl<RoomInfoMapper, RoomInfo>
         //1.查询RoomInfo
         RoomInfo roomInfo = roomInfoMapper.selectById(id);
 
+
         //2.查询所属公寓信息
         ApartmentInfo apartmentInfo = apartmentInfoMapper.selectById(roomInfo.getApartmentId());
 
