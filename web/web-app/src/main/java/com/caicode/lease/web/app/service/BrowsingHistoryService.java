@@ -12,4 +12,6 @@ import com.caicode.lease.web.app.vo.history.HistoryItemVo;
 */
 public interface BrowsingHistoryService extends IService<BrowsingHistory> {
     IPage<HistoryItemVo> pageHistoryItemByUserId(Page<HistoryItemVo> page, Long userId);
+
+    void saveHistory(Long userId, Long id);
 }
