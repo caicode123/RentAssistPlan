@@ -13,6 +13,7 @@ import java.util.List;
 */
 public interface ViewAppointmentMapper extends BaseMapper<ViewAppointment> {
 
+    List<AppointmentItemVo> listItemByUserId(Long userId);
 }
 
 
