@@ -35,6 +35,6 @@ springdoc:
 # 阿里云短信
 aliyun:
   sms:
-    access-key-id: LTAI5tPhbn9rsVaDKLc8NVZT
-    access-key-secret: 2avwf9FBdD5IaDyzvljNGbPes6IXbi
+    access-key-id:
+    access-key-secret:
     endpoint: dysmsapi.aliyuncs.com
