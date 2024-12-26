@@ -7,7 +7,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 
 /**
-* @author liubo
+* @author caicode
 * @description 针对表【room_info(房间信息表)】的数据库操作Mapper
 * @Entity com.caicode.lease.model.RoomInfo
 */

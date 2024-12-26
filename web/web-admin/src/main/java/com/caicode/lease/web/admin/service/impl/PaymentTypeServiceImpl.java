@@ -7,7 +7,7 @@ import com.caicode.lease.web.admin.mapper.PaymentTypeMapper;
 import org.springframework.stereotype.Service;
 
 /**
-* @author liubo
+* @author caicode
 * @description 针对表【payment_type(支付方式表)】的数据库操作Service实现
 */
 @Service

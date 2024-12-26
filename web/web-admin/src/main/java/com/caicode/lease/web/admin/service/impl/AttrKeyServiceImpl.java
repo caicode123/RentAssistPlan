@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
-* @author liubo
+* @author caicode
 * @description 针对表【attr_key(房间基本属性表)】的数据库操作Service实现
 */
 @Service

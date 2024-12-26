@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author liubo
+ * @author caicode
  * @description 针对表【apartment_info(公寓信息表)】的数据库操作Service实现
  */
 @Service
