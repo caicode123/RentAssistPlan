@@ -2,6 +2,7 @@ package com.caicode.lease.web.app.service;
 
 import com.caicode.lease.model.entity.LeaseAgreement;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.caicode.lease.web.app.vo.agreement.AgreementDetailVo;
 import com.caicode.lease.web.app.vo.agreement.AgreementItemVo;
 
 import java.util.List;
@@ -12,4 +13,6 @@ import java.util.List;
 */
 public interface LeaseAgreementService extends IService<LeaseAgreement> {
     List<AgreementItemVo> listItemByPhone(String username);
+
+    AgreementDetailVo getDetailById(Long id);
 }
