@@ -55,6 +55,6 @@ public class JwtUtil {
     }
 
     public static void main(String[] args) {
-        System.out.println(createToken(1L, "zhangsan"));
+        System.out.println(createToken(8L, "18767699932"));
     }
 }

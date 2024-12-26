@@ -1,6 +1,7 @@
 package com.caicode.lease.web.app.controller.login;
 
 
+import com.caicode.lease.common.login.LoginUserHolder;
 import com.caicode.lease.common.result.Result;
 import com.caicode.lease.web.app.service.LoginService;
 import com.caicode.lease.web.app.vo.user.LoginVo;
@@ -35,7 +36,9 @@ public class LoginController {
     @GetMapping("info")
     @Operation(summary = "获取登录用户信息")
     public Result<UserInfoVo> info() {
-        return Result.ok();
+        Long userId = LoginUserHolder.getLoginUser().getUserId();
+        UserInfoVo userInfoVo = service.getLoginUserById(userId);
+        return Result.ok(userInfoVo);
     }
 }
 
