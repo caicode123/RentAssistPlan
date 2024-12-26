@@ -109,7 +109,7 @@
           and is_release = 1
           and apartment_id = #{id}
     </select>
-    <select id="pageItemByApartmentId" resultType="com.caicode.lease.web.app.vo.room.RoomItemVo">
+    <select id="pageItemByApartmentId" resultMap="RoomItemVoMap">
         select ri.id,
                ri.room_number,
                ri.rent,
