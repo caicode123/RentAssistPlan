@@ -35,6 +35,6 @@ springdoc:
 # 阿里云短信
 aliyun:
   sms:
-    access-key-id:
-    access-key-secret:
+    access-key-id: ${ALIBABA_CLOUD_ACCESS_KEY}
+    access-key-secret: ${ALIBABA_CLOUD_SECRET_KEY}
     endpoint: dysmsapi.aliyuncs.com
